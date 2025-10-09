@@ -1,12 +1,18 @@
-import './App.css'
+import './style/style.css';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import { Routes, Route } from "react-router-dom";
 
 function App() {
 
   return (
     <>
-    <h1>Banheirometrô</h1>
+    <Routes>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/login" element={<Login/>}/>
+    </Routes>
     </>
   )
 }
 
-export default App
+export default App;
