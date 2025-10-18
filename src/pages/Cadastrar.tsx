@@ -1,11 +1,11 @@
 import '../style/style.css'
 
-function Login() {
+function Cadastro() {
 
 
   return (
     <div id='login-pagina'>
-      <h2 className='texto-principal'>Login</h2>
+      <h2 className='texto-principal'>Cadastro</h2>
       <div className='login-container'>
       <p className='texto login-texto'>Logue em sua conta abaixo para cadastrar sua avaliação no <span className='banheirometro'>banheirometrô.</span></p>
         <div className='login-formulario'>
@@ -31,4 +31,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Cadastro;
