@@ -1,4 +1,5 @@
 import '../style/style.css'
+import { Link } from 'react-router-dom';
 
 function Login() {
 
@@ -23,7 +24,7 @@ function Login() {
             required
           />
         </div>
-        <p className='texto login-texto cta-cadastrar'>Não tem uma conta? <span className='destaque-cta'>Cadastre-se!</span></p>
+        <p className='texto login-texto cta-cadastrar'>Não tem uma conta? <span className='destaque-cta'><Link to={'/cadastro'}>Cadastre-se</Link></span></p>
         <button type="submit">Entrar</button>
         </div>
       </div>

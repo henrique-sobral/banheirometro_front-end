@@ -1,14 +1,13 @@
 import '../style/style.css'
-import '../style/home.css'
 
-function Home() {
+function Header() {
   return (
     <>
     <div className='container-principal'>
-      <h1>Banheirometro</h1>
+      <h1>Banheirometrô</h1>
     </div>
     </>
   );
 }
 
-export default Home;
+export default Header;

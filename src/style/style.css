@@ -12,6 +12,10 @@ body{
   background-color: #f7f7f7;
   
 }
+a{
+  text-decoration: none;
+  color: inherit;
+}
 #root {
   width: 100%;
   max-width: 1280px;
