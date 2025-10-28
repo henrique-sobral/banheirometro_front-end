@@ -8,10 +8,10 @@ interface CardHomeProps {
 
 function CardHome({ imagem = '', nome }: CardHomeProps) {
   const [avaliacoes, setAvaliacoes] = useState({
-    classificacaoGeral: 0,
-    funcionalidade: 0,
-    papelHigienico: 0,
-    higiene: 0
+    classificacaoGeral: 1,
+    funcionalidade: 1,
+    papelHigienico: 1,
+    higiene: 1
   });
 
   const [caracteristicas, setCaracteristicas] = useState({
@@ -46,9 +46,9 @@ function CardHome({ imagem = '', nome }: CardHomeProps) {
           value={avaliacoes.classificacaoGeral}
           onChange={(e) => handleAvaliacaoChange('classificacaoGeral', Number(e.target.value))}
         >
-          {[0, 1, 2, 3, 4, 5].map((num) => (
+          {[1, 2, 3, 4, 5].map((num) => (
             <option key={num} value={num}>
-              {num === 0 ? '' : '⭐'.repeat(num)}
+              {'⭐'.repeat(num)}
             </option>
           ))}
         </select>
@@ -159,9 +159,9 @@ function CardHome({ imagem = '', nome }: CardHomeProps) {
             value={avaliacoes.funcionalidade}
             onChange={(e) => handleAvaliacaoChange('funcionalidade', Number(e.target.value))}
           >
-            {[0, 1, 2, 3, 4, 5].map((num) => (
+            {[1, 2, 3, 4, 5].map((num) => (
               <option key={num} value={num}>
-                {num === 0 ? ' ' : '⭐'.repeat(num)}
+                {'⭐'.repeat(num)}
               </option>
             ))}
           </select>
@@ -173,9 +173,9 @@ function CardHome({ imagem = '', nome }: CardHomeProps) {
             value={avaliacoes.papelHigienico}
             onChange={(e) => handleAvaliacaoChange('papelHigienico', Number(e.target.value))}
           >
-            {[0, 1, 2, 3, 4, 5].map((num) => (
+            {[1, 2, 3, 4, 5].map((num) => (
               <option key={num} value={num}>
-                {num === 0 ? '' : '⭐'.repeat(num)}
+                {'⭐'.repeat(num)}
               </option>
             ))}
           </select>
@@ -187,9 +187,9 @@ function CardHome({ imagem = '', nome }: CardHomeProps) {
             value={avaliacoes.higiene}
             onChange={(e) => handleAvaliacaoChange('higiene', Number(e.target.value))}
           >
-            {[0, 1, 2, 3, 4, 5].map((num) => (
+            {[1, 2, 3, 4, 5].map((num) => (
               <option key={num} value={num}>
-                {num === 0 ? '' : '⭐'.repeat(num)}
+                {'⭐'.repeat(num)}
               </option>
             ))}
           </select>
