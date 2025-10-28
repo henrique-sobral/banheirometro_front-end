@@ -1,212 +1,160 @@
 import '../style/style.css';
-import { useState } from 'react';
 
 interface CardHomeProps {
-  imagem?: string;
-  nome: string;
+	imagem?: string;
+	nome?: string;
+	avaliacoes?: {
+		classificacaoGeral?: number;
+		funcionalidade?: number;
+		papelHigienico?: number;
+		higiene?: number;
+	};
+	caracteristicas?: {
+		acessibilidade?: string;
+		sabonete?: string;
+		portaFuncional?: string;
+		iluminacao?: string;
+	};
+	descricao?: string;
 }
 
-function CardHome({ imagem = '', nome }: CardHomeProps) {
-  const [avaliacoes, setAvaliacoes] = useState({
-    classificacaoGeral: 1,
-    funcionalidade: 1,
-    papelHigienico: 1,
-    higiene: 1
-  });
+export default function CardHome({
+	imagem = '',
+	nome = '',
+	avaliacoes = {
+		classificacaoGeral: 3,
+		funcionalidade: 4,
+		papelHigienico: 2,
+		higiene: 5
+	},
+	caracteristicas = {
+		acessibilidade: 'sim',
+		sabonete: 'nao',
+		portaFuncional: 'sim',
+		iluminacao: 'sim'
+	},
+	descricao = ''
+}: CardHomeProps) {
+	// Mostra a avaliação geral "printada" (como estrelas) e mantém os controles
+	// com os valores selecionados (disabled) para indicar a escolha.
 
-  const [caracteristicas, setCaracteristicas] = useState({
-    acessibilidade: '',
-    sabonete: '',
-    portaFuncional: '',
-    iluminacao: ''
-  });
+	const estrelas = '⭐'.repeat(Math.max(1, Math.min(5, avaliacoes.classificacaoGeral || 1)));
 
-  const [descricao, setDescricao] = useState('');
+	return (
+		<div className="card-posts">
+			{imagem && (
+				<div className="card-image">
+					<img src={imagem} alt={nome} />
+				</div>
+			)}
+			<h2 className="card-title">{nome}</h2>
 
-  const handleAvaliacaoChange = (campo: keyof typeof avaliacoes, valor: number) => {
-    setAvaliacoes(prev => ({ ...prev, [campo]: valor }));
-  };
+			<div className="selected-print">
+				<strong>Classificação escolhida:</strong> <span>{estrelas}</span>
+			</div>
 
-  const handleCaracteristicaChange = (campo: keyof typeof caracteristicas, valor: string) => {
-    setCaracteristicas(prev => ({ ...prev, [campo]: valor }));
-  };
+			<div className="ratings-section">
+				<h3>⭐ Classificação Geral (selecionada)</h3>
+				<select value={avaliacoes.classificacaoGeral} disabled>
+					{[1, 2, 3, 4, 5].map((num) => (
+						<option key={num} value={num}>
+							{'⭐'.repeat(num)}
+						</option>
+					))}
+				</select>
+			</div>
 
-  return (
-    <div className="card-posts">
-      {imagem && (
-        <div className="card-image">
-          <img src={imagem} alt={nome} />
-        </div>
-      )}
-      <h2 className="card-title">{nome}</h2>
+			<div className="features-section">
+				<div className="feature-item">
+					<label>✅ Acessibilidade:</label>
+					<div className="radio-group">
+						<label>
+							<input type="radio" name="acessibilidade" value="sim" checked={caracteristicas.acessibilidade === 'sim'} disabled /> Sim
+						</label>
+						<label>
+							<input type="radio" name="acessibilidade" value="nao" checked={caracteristicas.acessibilidade === 'nao'} disabled /> Não
+						</label>
+					</div>
+				</div>
 
-      <div className="ratings-section">
-        <h3>⭐ Classificação Geral</h3>
-        <select 
-          value={avaliacoes.classificacaoGeral}
-          onChange={(e) => handleAvaliacaoChange('classificacaoGeral', Number(e.target.value))}
-        >
-          {[1, 2, 3, 4, 5].map((num) => (
-            <option key={num} value={num}>
-              {'⭐'.repeat(num)}
-            </option>
-          ))}
-        </select>
-      </div>
+				<div className="feature-item">
+					<label>✅ Sabonete:</label>
+					<div className="radio-group">
+						<label>
+							<input type="radio" name="sabonete" value="sim" checked={caracteristicas.sabonete === 'sim'} disabled /> Sim
+						</label>
+						<label>
+							<input type="radio" name="sabonete" value="nao" checked={caracteristicas.sabonete === 'nao'} disabled /> Não
+						</label>
+					</div>
+				</div>
 
-      <div className="features-section">
-        <div className="feature-item">
-          <label>✅ Acessibilidade:</label>
-          <div className="radio-group">
-            <label>
-              <input
-                type="radio"
-                name="acessibilidade"
-                value="sim"
-                checked={caracteristicas.acessibilidade === 'sim'}
-                onChange={(e) => handleCaracteristicaChange('acessibilidade', e.target.value)}
-              /> Sim
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="acessibilidade"
-                value="nao"
-                checked={caracteristicas.acessibilidade === 'nao'}
-                onChange={(e) => handleCaracteristicaChange('acessibilidade', e.target.value)}
-              /> Não
-            </label>
-          </div>
-        </div>
+				<div className="feature-item">
+					<label>✅ Porta funcional:</label>
+					<div className="radio-group">
+						<label>
+							<input type="radio" name="portaFuncional" value="sim" checked={caracteristicas.portaFuncional === 'sim'} disabled /> Sim
+						</label>
+						<label>
+							<input type="radio" name="portaFuncional" value="nao" checked={caracteristicas.portaFuncional === 'nao'} disabled /> Não
+						</label>
+					</div>
+				</div>
 
-        <div className="feature-item">
-          <label>✅ Sabonete:</label>
-          <div className="radio-group">
-            <label>
-              <input
-                type="radio"
-                name="sabonete"
-                value="sim"
-                checked={caracteristicas.sabonete === 'sim'}
-                onChange={(e) => handleCaracteristicaChange('sabonete', e.target.value)}
-              /> Sim
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="sabonete"
-                value="nao"
-                checked={caracteristicas.sabonete === 'nao'}
-                onChange={(e) => handleCaracteristicaChange('sabonete', e.target.value)}
-              /> Não
-            </label>
-          </div>
-        </div>
+				<div className="feature-item">
+					<label>✅ Iluminação:</label>
+					<div className="radio-group">
+						<label>
+							<input type="radio" name="iluminacao" value="sim" checked={caracteristicas.iluminacao === 'sim'} disabled /> Sim
+						</label>
+						<label>
+							<input type="radio" name="iluminacao" value="nao" checked={caracteristicas.iluminacao === 'nao'} disabled /> Não
+						</label>
+					</div>
+				</div>
+			</div>
 
-        <div className="feature-item">
-          <label>✅ Porta funcional:</label>
-          <div className="radio-group">
-            <label>
-              <input
-                type="radio"
-                name="portaFuncional"
-                value="sim"
-                checked={caracteristicas.portaFuncional === 'sim'}
-                onChange={(e) => handleCaracteristicaChange('portaFuncional', e.target.value)}
-              /> Sim
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="portaFuncional"
-                value="nao"
-                checked={caracteristicas.portaFuncional === 'nao'}
-                onChange={(e) => handleCaracteristicaChange('portaFuncional', e.target.value)}
-              /> Não
-            </label>
-          </div>
-        </div>
+			<div className="ratings-section">
+				<div className="rating-item">
+					<label>🚽 Funcionalidade:</label>
+					<select value={avaliacoes.funcionalidade} disabled>
+						{[1, 2, 3, 4, 5].map((num) => (
+							<option key={num} value={num}>
+								{'⭐'.repeat(num)}
+							</option>
+						))}
+					</select>
+				</div>
 
-        <div className="feature-item">
-          <label>✅ Iluminação:</label>
-          <div className="radio-group">
-            <label>
-              <input
-                type="radio"
-                name="iluminacao"
-                value="sim"
-                checked={caracteristicas.iluminacao === 'sim'}
-                onChange={(e) => handleCaracteristicaChange('iluminacao', e.target.value)}
-              /> Sim
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="iluminacao"
-                value="nao"
-                checked={caracteristicas.iluminacao === 'nao'}
-                onChange={(e) => handleCaracteristicaChange('iluminacao', e.target.value)}
-              /> Não
-            </label>
-          </div>
-        </div>
-      </div>
+				<div className="rating-item">
+					<label>🧻 Papel Higiênico:</label>
+					<select value={avaliacoes.papelHigienico} disabled>
+						{[1, 2, 3, 4, 5].map((num) => (
+							<option key={num} value={num}>
+								{'⭐'.repeat(num)}
+							</option>
+						))}
+					</select>
+				</div>
 
-      <div className="ratings-section">
-        <div className="rating-item">
-          <label>🚽 Funcionalidade:</label>
-          <select 
-            value={avaliacoes.funcionalidade}
-            onChange={(e) => handleAvaliacaoChange('funcionalidade', Number(e.target.value))}
-          >
-            {[1, 2, 3, 4, 5].map((num) => (
-              <option key={num} value={num}>
-                {'⭐'.repeat(num)}
-              </option>
-            ))}
-          </select>
-        </div>
+				<div className="rating-item">
+					<label>🧼 Higiene Geral:</label>
+					<select value={avaliacoes.higiene} disabled>
+						{[1, 2, 3, 4, 5].map((num) => (
+							<option key={num} value={num}>
+								{'⭐'.repeat(num)}
+							</option>
+						))}
+					</select>
+				</div>
+			</div>
 
-        <div className="rating-item">
-          <label>🧻 Papel Higiênico:</label>
-          <select 
-            value={avaliacoes.papelHigienico}
-            onChange={(e) => handleAvaliacaoChange('papelHigienico', Number(e.target.value))}
-          >
-            {[1, 2, 3, 4, 5].map((num) => (
-              <option key={num} value={num}>
-                {'⭐'.repeat(num)}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="rating-item">
-          <label>🧼 Higiene Geral:</label>
-          <select 
-            value={avaliacoes.higiene}
-            onChange={(e) => handleAvaliacaoChange('higiene', Number(e.target.value))}
-          >
-            {[1, 2, 3, 4, 5].map((num) => (
-              <option key={num} value={num}>
-                {'⭐'.repeat(num)}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      <div className="description-section">
-        <label>Descrição da Experiência:</label>
-        <textarea
-          value={descricao}
-          onChange={(e) => setDescricao(e.target.value)}
-          rows={4}
-          placeholder="Compartilhe sua experiência com este banheiro..."
-        />
-      </div>
-    </div>
-  );
+			<div className="description-section">
+				<label>Descrição da Experiência:</label>
+				<p className="description-text">{descricao || (
+					'Localizado no centro de Bauru, este banheiro público é limpo e bem iluminado, com acessibilidade para cadeirantes, sabonete disponível e manutenção regular. Há papel higiênico em boa quantidade e a sensação de segurança é boa durante o dia.'
+				)}</p>
+			</div>
+		</div>
+	);
 }
-
-export default CardHome;
