@@ -1,0 +1,69 @@
+/* Container for the entire content */
+.content-container {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 0 32px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+/* Grid for cards: 4 columns x 2 rows */
+.cards-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
+	width: 100%;
+
+	box-sizing: border-box;
+}
+
+/* Card sizing to make grid consistent */
+.card-posts {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  min-height: 180px;
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}.card-image img {
+	width: 100%;
+	height: 100px;
+	object-fit: cover;
+	border-radius: 6px;
+}
+
+.card-title {
+	margin: 8px 0;
+	font-size: 1.05rem;
+}
+
+.selected-print {
+	margin-bottom: 8px;
+}
+
+/* Responsive: stack to 2 columns on smaller screens */
+@media (max-width: 1024px) {
+	.content-container {
+		padding: 0 24px;
+	}
+	.cards-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 20px;
+	}
+}
+
+@media (max-width: 480px) {
+	.content-container {
+		padding: 0 16px;
+	}
+	.cards-grid {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 16px;
+	}
+}
+
