@@ -21,7 +21,8 @@ a{
   max-width: 1280px;
   min-height: 100vh;
   margin: 0 auto;
-  padding: 2rem;
+  /* reserve space for the fixed header (64px) + original 2rem padding */
+  padding: calc(2rem + 64px) 2rem 2rem;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -205,4 +206,59 @@ textarea:focus, select:focus {
   outline: none;
   border-color: var(--cor-primaria);
   box-shadow: 0 0 0 2px rgba(160, 237, 237, 0.2);
+}
+
+/* Header styles */
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  padding: 0.75rem 0;
+  z-index: 1000;
+}
+.header-inner {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.logo .logo-link{
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--cor-texto);
+}
+.header-nav{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btn{
+  font-family: var(--familia-fonte);
+  padding: 0.45rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.12s ease;
+  text-decoration: none;
+  display: inline-block;
+  color: var(--cor-texto);
+}
+.btn-ghost{
+  background: transparent;
+  border-color: rgba(0,0,0,0.06);
+}
+.btn-primary{
+  background: var(--cor-primaria);
+  color: var(--cor-texto);
+  font-weight: 600;
+}
+.btn-primary:hover, .btn-ghost:hover{
+  transform: translateY(-1px);
 }

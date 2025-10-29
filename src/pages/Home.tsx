@@ -7,7 +7,7 @@ function Home() {
     <>
       <Header/>
     <div className='container-principal'>
-      <h1>Banheirometro</h1>
+      <h1>Banheirometrô</h1>
     </div>
     </>
   );
