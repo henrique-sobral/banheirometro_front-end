@@ -262,3 +262,47 @@ textarea:focus, select:focus {
 .btn-primary:hover, .btn-ghost:hover{
   transform: translateY(-1px);
 }
+
+/* Profile styles */
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.profile-image, .profile-image-placeholder {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--cor-primaria);
+}
+
+.profile-image-placeholder {
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.image-upload-label {
+  color: var(--cor-texto);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.image-upload-label:hover {
+  background-color: var(--cor-primaria);
+}
+
+#profile-page select {
+  width: 100%;
+  padding: 7px;
+  margin-top: 5px;
+}
