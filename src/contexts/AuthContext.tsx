@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { authService, AuthResponse } from '../services/auth';
+import { authService, AuthResponse } from 'http://localhost:5173/';
 
 interface AuthContextType {
     user: AuthResponse['user'] | null;

@@ -1,5 +1,5 @@
-// URL base da API - altere para seu backend
-const API_URL = 'https://api.seubackend.com';
+// URL base da API - desenvolvimento local
+const API_URL = 'http://localhost:3000/api';
 
 export interface LoginCredentials {
     username: string;
